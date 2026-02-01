@@ -1,0 +1,27 @@
+[Your Name]
+[Your Address]
+[City, State, Zip]
+
+[Date]
+
+[Landlord Name]
+[Landlord Address]
+[City, State, Zip]
+
+RE: Request for Repairs at [Rental Property Address]
+
+Dear [Landlord Name],
+
+I am writing to formally request repairs to my rental unit at the address listed above. Specifically, I am experiencing the following issue(s):
+
+{{ issue_details }}
+
+I have previously notified you of this issue on [Date of First Notice] via {{ notice_method }}. To date, the issue has not been resolved.
+
+Under North Carolina General Statute § 42-42, landlords are required to maintain the premises in a fit and habitable condition, including keeping all plumbing, sanitary, heating, ventilating, and air conditioning facilities in good and safe working order.
+
+Please contact me immediately to schedule these repairs. I expect this issue to be resolved within {{ deadline_days }} days, or I may be forced to explore further legal remedies, including seeking rent abatement or contacting the local housing code enforcement agency.
+
+Sincerely,
+
+[Your Name]

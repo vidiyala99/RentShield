@@ -1,0 +1,28 @@
+[Your Name]
+[Your Address]
+[City, State, Zip]
+
+[Date]
+
+[Landlord Name]
+[Landlord Address]
+[City, State, Zip]
+
+RE: Return of Security Deposit for [Rental Property Address]
+
+Dear [Landlord Name],
+
+I vacated the above premises on {{ move_out_date }}. It has now been more than 30 days since my move-out date.
+
+Under North Carolina General Statute § 42-52, a landlord must return the tenant's security deposit within 30 days of the termination of the tenancy. If there are any deductions for damages, you were required to provide an itemized accounting of those deductions within that same 30-day period.
+
+I have not received my deposit nor an itemized list of deductions. Therefore, I demand the immediate return of my full security deposit in the amount of ${{ deposit_amount }}.
+
+Please send the check to my forwarding address:
+[Forwarding Address]
+
+If I do not receive payment within 10 business days, I will file an action in Small Claims Court for the return of my deposit. Please be aware that under NC law, a landlord's willful failure to comply with the deposit return laws may result in the tenant recovering attorney's fees.
+
+Sincerely,
+
+[Your Name]

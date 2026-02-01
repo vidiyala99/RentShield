@@ -1,0 +1,25 @@
+# Systems
+.DS_Store
+Thumbs.db
+
+# Environment Variables
+.env
+.env.local
+
+# Dependency Directories
+node_modules/
+venv/
+env/
+__pycache__/
+*.egg-info/
+
+# Build & Dist
+dist/
+build/
+
+# Database
+*.db
+*.sqlite3
+
+# Logs
+*.log

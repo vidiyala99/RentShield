@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+jinja2
+python-multipart
+# Database driver might be needed later (e.g., psycopg2-binary), using sqlite for now/defualt
