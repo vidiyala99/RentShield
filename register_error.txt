@@ -1,0 +1,5 @@
+400: Email already registered
+Traceback (most recent call last):
+  File "C:\Users\aakas\Documents\RentShield\backend\app\routers\auth.py", line 17, in register
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: Email already registered

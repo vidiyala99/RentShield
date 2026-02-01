@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
                 </div>
 
                 <div className="disclaimer-text">
-                    <strong style={{ color: 'var(--text-dim)', display: 'block', marginBottom: '0.5rem' }}>Disclaimer</strong>
-                    RentShield provides legal information, not legal advice. Use of this tool does not create an attorney-client relationship. Laws vary by jurisdiction and are subject to change. We recommend consulting with a qualified attorney or legal aid organization for advice on your specific situation.
+                    <strong style={{ color: 'var(--text-dim)', display: 'block', marginBottom: '0.5rem' }}>Empowering Tenant Voices - Informational Service Only</strong>
+                    RentShield is designed to help tenants understand their rights and organize their communications. <strong>We are not a law firm</strong> and do not provide legal advice or representation. Our goal is to provide you with a voice and the tools to advocate for yourself. All information is for educational purposes only. For specific legal counsel, please consult an attorney or legal aid organization.
                 </div>
 
                 <div className="copyright">

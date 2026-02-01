@@ -54,8 +54,10 @@ class CaseBase(BaseModel):
     description: str
     case_type: Optional[str] = None
 
-class CaseCreate(CaseBase):
-    pass
+class CaseCreate(BaseModel):
+    case_type: str
+    title: Optional[str] = None
+    description: Optional[str] = None
 
 class CaseDetail(CaseBase):
     id: int

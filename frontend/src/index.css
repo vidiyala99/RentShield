@@ -181,6 +181,27 @@ h3 {
   z-index: 50;
 }
 
+.nav-item {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+  color: white;
+  background: rgba(197, 160, 101, 0.15);
+  border: 1px solid rgba(197, 160, 101, 0.2);
+}
+
 .brand-logo {
   font-family: 'Cinzel', serif;
   font-size: 1.5rem;

@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import os
 
 # Create a crypt context for hashing passwords
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 # Secret key for JWT encoding/decoding
 # In production, this should be a long random string loaded from env vars

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../stores/authStore';
 import { PhotoUpload } from '../components/PhotoUpload';
-import { FileText, ArrowLeft, Clock, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Clock, CheckCircle } from 'lucide-react';
 
 interface CasePhoto {
     id: string;

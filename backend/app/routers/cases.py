@@ -55,6 +55,44 @@ async def get_cases(db: Session = Depends(get_db)):
     # Let's filter: Cases where user_id is NULL are templates.
     return db.query(Case).filter(Case.user_id == None).all()
 
+@router.post("", response_model=CaseDetail)
+async def create_case(case_in: CaseCreate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    # 1. Find the template (optional, or just use hardcoded types if templates aren't fully DB-driven yet)
+    # Assuming we look up by case_type (which matches slug of template?)
+    # or just use the input title/desc if provided.
+    
+    # Generate unique slug
+    import uuid
+    new_slug = f"{case_in.case_type}-{str(uuid.uuid4())[:8]}"
+    
+    # Determine Title/Description if not provided
+    title = case_in.title
+    description = case_in.description
+    
+    if not title:
+        # Try to find template
+        template = db.query(Case).filter(Case.slug == case_in.case_type).first()
+        if template:
+            title = template.title
+            description = template.description
+        else:
+            title = f"{case_in.case_type.capitalize()} Case"
+            description = "User generated case"
+
+    new_case = Case(
+        user_id=current_user.id,
+        slug=new_slug,
+        title=title,
+        description=description,
+        case_type=case_in.case_type,
+        status="active"
+    )
+    
+    db.add(new_case)
+    db.commit()
+    db.refresh(new_case)
+    return new_case
+
 @router.get("/my-cases", response_model=List[CaseDetail])
 async def get_my_cases(current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     # Return cases belonging to the user

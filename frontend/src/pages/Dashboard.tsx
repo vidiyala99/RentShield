@@ -1,150 +1,121 @@
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../stores/authStore';
-import { Link, useNavigate } from 'react-router-dom';
-
-interface Case {
-    id: number;
-    title: string;
-    description: string;
-    status: string;
-    slug: string;
-    case_type: string;
-}
+import { DashboardLayout } from '../components/DashboardLayout';
 
 export const Dashboard = () => {
-    const { user, logout, accessToken } = useAuth();
-    const [cases, setCases] = useState<Case[]>([]);
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        fetchMyCases();
-    }, []);
-
-    const fetchMyCases = async () => {
-        try {
-            const response = await fetch('http://localhost:8000/cases/my-cases', {
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            });
-            if (response.ok) {
-                const data = await response.json();
-                setCases(data);
-            }
-        } catch (error) {
-            console.error("Failed to fetch cases", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleLogout = () => {
-        logout();
-        navigate('/login');
-    };
+    const { user } = useAuth();
 
     return (
-        <div className="app-container">
-            <nav className="dash-nav">
-                <div className="brand-logo">RentShield</div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                    <div style={{ textAlign: 'right', display: 'none', sm: 'block' }}>
-                        <div style={{ fontSize: '0.85rem', fontWeight: 500, color: 'white' }}>{user?.full_name}</div>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--text-sub)' }}>Client Account</div>
-                    </div>
-                    <button
-                        onClick={handleLogout}
-                        style={{
-                            background: 'transparent',
-                            border: '1px solid var(--border-light)',
-                            color: 'var(--text-dim)',
-                            padding: '0.5rem 1rem',
-                            borderRadius: '6px',
-                            cursor: 'pointer',
-                            fontSize: '0.85rem'
-                        }}
-                    >
-                        Log Out
-                    </button>
-                </div>
-            </nav>
+        <DashboardLayout>
+            <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+                <header style={{ marginBottom: '3rem' }}>
+                    <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', color: 'white' }}>Welcome back, {user?.full_name?.split(' ')[0] || 'Tenant'}.</h1>
+                    <p style={{ color: 'var(--text-dim)' }}>Here is an overview of your rights and active matters.</p>
+                </header>
 
-            <div className="dash-content">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
-                    <div>
-                        <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', color: 'white' }}>My Cases</h1>
-                        <p style={{ color: 'var(--text-dim)' }}>Manage and track your ongoing legal matters.</p>
+                <div className="bento-grid" style={{ marginBottom: '3rem' }}>
+                    {/* Primary Action Card */}
+                    <div className="bento-card" style={{ gridColumn: 'span 2', background: 'linear-gradient(135deg, #C5A065 0%, #AA854B 100%)', border: 'none' }}>
+                        <div style={{ position: 'relative', zIndex: 10 }}>
+                            <h2 style={{ fontSize: '1.75rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#1a1d24' }}>Start a New Case</h2>
+                            <p style={{ marginBottom: '2rem', maxWidth: '400px', fontWeight: 500, color: 'rgba(26, 29, 36, 0.9)' }}>
+                                Facing a rental issue? Initialize a secure case file to document evidence and generate legal letters.
+                            </p>
+                            <Link
+                                to="/cases/new"
+                                style={{
+                                    display: 'inline-block',
+                                    background: '#1a1d24',
+                                    color: 'white',
+                                    padding: '0.75rem 1.5rem',
+                                    borderRadius: '8px',
+                                    fontWeight: 600,
+                                    textDecoration: 'none',
+                                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                                }}
+                            >
+                                + Initialize Case
+                            </Link>
+                        </div>
                     </div>
-                    <Link to="/cases/new" className="action-btn" style={{ width: 'auto', padding: '0.75rem 1.5rem', textDecoration: 'none', display: 'inline-block' }}>
-                        + New Case
+
+                    {/* Quick Stats or Tips */}
+                    <div className="bento-card">
+                        <div>
+                            <div style={{ color: 'var(--accent-primary)', fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Did you know?</div>
+                            <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                                Landlords in NC must return your security deposit within 30 days of lease termination or provide an interim accounting.
+                            </p>
+                        </div>
+                        <Link to="/chat" style={{ color: 'white', fontSize: '0.9rem', fontWeight: 500, marginTop: '1rem', display: 'block', textDecoration: 'none' }}>
+                            Ask AI Assistant about Deposits &rarr;
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="bento-grid">
+                    <Link to="/chat" className="bento-card">
+                        <div style={{
+                            width: '48px', height: '48px',
+                            background: 'rgba(59, 130, 246, 0.1)',
+                            borderRadius: '8px',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            marginBottom: '1rem', color: '#60A5FA'
+                        }}>
+                            <span style={{ fontSize: '1.5rem' }}>🤖</span>
+                        </div>
+                        <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'white' }}>AI Rights Assistant</h3>
+                        <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                            Have a quick question? Chat with our AI to understand your rights regarding repairs, eviction, and more.
+                        </p>
+                    </Link>
+
+                    <Link to="/resources" className="bento-card">
+                        <div style={{
+                            width: '48px', height: '48px',
+                            background: 'rgba(74, 222, 128, 0.1)',
+                            borderRadius: '8px',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            marginBottom: '1rem', color: '#4ADE80'
+                        }}>
+                            <span style={{ fontSize: '1.5rem' }}>📚</span>
+                        </div>
+                        <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'white' }}>Resources Library</h3>
+                        <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                            Access a curated collection of North Carolina tenant law documents, guides, and contact numbers.
+                        </p>
                     </Link>
                 </div>
 
-                {loading ? (
-                    <div style={{ textAlign: 'center', padding: '4rem', color: 'var(--text-sub)' }}>
-                        Retrieving case files...
-                    </div>
-                ) : cases.length === 0 ? (
-                    <div style={{
-                        background: 'var(--bg-surface)',
-                        border: '1px dashed var(--border-light)',
-                        borderRadius: '12px',
-                        padding: '4rem',
-                        textAlign: 'center'
-                    }}>
-                        <div style={{
-                            width: '64px',
-                            height: '64px',
-                            background: 'rgba(197, 160, 101, 0.1)',
-                            borderRadius: '50%',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            margin: '0 auto 1.5rem auto',
-                            color: 'var(--accent-primary)'
-                        }}>
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <path d="M14 2v6h6"></path>
-                                <path d="M12 18v-6"></path>
-                                <path d="M9 15h6"></path>
-                            </svg>
-                        </div>
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: 'white' }}>No Active Cases</h3>
-                        <p style={{ color: 'var(--text-dim)', marginBottom: '2rem', maxWidth: '400px', margin: '0 auto 2rem auto' }}>
-                            Your portfolio is empty. Initialize a new case to generate legal protection documents.
-                        </p>
-                        <Link to="/cases/new" className="text-btn" style={{ color: 'var(--accent-primary)', fontWeight: 600 }}>
-                            Initialize First Case &rarr;
+                <div style={{ marginTop: '4rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'white', borderLeft: '4px solid var(--accent-primary)', paddingLeft: '1rem' }}>Common Issues</h2>
+                    <div className="bento-grid">
+                        <Link to="/cases/new" className="bento-card">
+                            <div style={{ marginBottom: '1rem', color: '#FCD34D' }}>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                            </div>
+                            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'white' }}>Repairs & Maintenance</h3>
+                            <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem' }}>Mold, leaks, or broken appliances? Log evidence and request repairs.</p>
+                        </Link>
+
+                        <Link to="/cases/new" className="bento-card">
+                            <div style={{ marginBottom: '1rem', color: '#34D399' }}>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'white' }}>Security Deposit</h3>
+                            <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem' }}>Ensure you get your full deposit back or contest unfair deductions.</p>
+                        </Link>
+
+                        <Link to="/cases/new" className="bento-card">
+                            <div style={{ marginBottom: '1rem', color: '#EF4444' }}>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            </div>
+                            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'white' }}>Eviction Defense</h3>
+                            <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem' }}>Received a notice to quit? Understand your rights and delay unlawful removal.</p>
                         </Link>
                     </div>
-                ) : (
-                    <div className="bento-grid">
-                        {cases.map((c) => (
-                            <Link key={c.id} to={`/cases/${c.id}`} className="bento-card">
-                                <span className="status-badge">{c.status || 'Active'}</span>
-                                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'white' }}>{c.title}</h3>
-                                <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.5rem', flex: 1 }}>
-                                    {c.description}
-                                </p>
-                                <div style={{
-                                    borderTop: '1px solid var(--border-light)',
-                                    paddingTop: '1rem',
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    fontSize: '0.85rem',
-                                    color: 'var(--text-sub)'
-                                }}>
-                                    <span>ID: {c.slug.toUpperCase()}-{c.id}</span>
-                                    <span style={{ color: 'var(--accent-primary)' }}>Open File &rarr;</span>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                )}
+                </div>
             </div>
-        </div>
+        </DashboardLayout>
     );
 };

@@ -76,7 +76,6 @@ class Case(Base):
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     user = relationship("User", back_populates="cases")
-    questions = relationship("Question", back_populates="case")
     # outcomes = relationship("Outcome", back_populates="case") # Outcome might be linked to Template?
     # For MVP V2, let's keep Questions linked to "Cases" (where some cases are templates).
 

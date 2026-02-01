@@ -1,0 +1,47 @@
+Global Exception: 1 validation error for UserResponse
+id
+  Input should be a valid string [type=string_type, input_value=UUID('2c44f124-cf1d-4b56-8580-e8570dc228e1'), input_type=UUID]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+Traceback (most recent call last):
+  File "C:\Users\aakas\Documents\RentShield\backend\app\main.py", line 10, in catch_exceptions_middleware
+    return await call_next(request)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\fastapi\routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\fastapi\routing.py", line 101, in app
+    response = await f(request)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\fastapi\routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\fastapi\routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+  File "C:\Users\aakas\Documents\RentShield\backend\app\routers\auth.py", line 48, in register
+    raise e
+  File "C:\Users\aakas\Documents\RentShield\backend\app\routers\auth.py", line 35, in register
+    user_model = UserResponse.model_validate(user)
+  File "C:\Users\aakas\Documents\RentShield\backend\venv\lib\site-packages\pydantic\main.py", line 716, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+pydantic_core._pydantic_core.ValidationError: 1 validation error for UserResponse
+id
+  Input should be a valid string [type=string_type, input_value=UUID('2c44f124-cf1d-4b56-8580-e8570dc228e1'), input_type=UUID]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
