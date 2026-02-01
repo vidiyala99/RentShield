@@ -16,9 +16,10 @@ app.add_middleware(
 def health_check():
     return {"status": "ok", "message": "RentShield API is running"}
 
-from app.routers import scenarios
+from app.routers import cases, auth
 
-app.include_router(scenarios.router)
+app.include_router(auth.router)
+app.include_router(cases.router)
 
 if __name__ == "__main__":
     import uvicorn
