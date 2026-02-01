@@ -62,6 +62,7 @@ def evaluate_scenario_endpoint(scenario_id: int, request: schemas.EvaluationRequ
     return schemas.EvaluationResponse(
         outcome_summary=result["outcome_summary"],
         rights_explanation=result["rights_explanation"],
-        letter_text=letter
+        letter_text=letter,
+        advocate_report=result.get("advocate_report", "No report available.")
     )
 

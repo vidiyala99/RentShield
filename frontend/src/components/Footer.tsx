@@ -10,6 +10,9 @@ const Footer: React.FC = () => {
                     Laws vary by jurisdiction and are subject to change.
                     We recommend consulting with a qualified attorney or legal aid organization for advice on your specific situation.
                 </p>
+                <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                    <a href="/resources" style={{ color: '#818cf8', textDecoration: 'none' }}>View Tenant Resources</a>
+                </div>
                 <p className="copyright">© {new Date().getFullYear()} RentShield. Built for NC Tenants.</p>
                 <p style={{ fontSize: '0.7rem', textAlign: 'center', opacity: 0.4, marginTop: '0.5rem' }}>
                     Privacy: We collect anonymous usage statistics to improve this tool. No personal data (names, addresses) is stored.

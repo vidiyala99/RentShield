@@ -129,20 +129,33 @@ def evaluate_eviction(answers: dict):
         "outcome_summary": summary,
         "rights_explanation": explanation,
         "template_name": template,
-        "context": context
+        "context": context,
+        "advocate_report": f"SCENARIO: Eviction\n\n- Notice Received: {has_notice}\n- Court Papers: {has_papers}\n- Repairs Needed: {repairs}\n- Can Pay Rent: {can_pay}\n\nASSESSMENT: {summary}"
     }
 
 def evaluate_scenario(slug: str, answers: dict):
+    # Common report generation if not specific
+    report = f"SCENARIO: {slug.upper()}\n\n"
+    for k, v in answers.items():
+        report += f"- {k}: {v}\n"
+    
+    result = {}
     if slug == "repairs":
-        return evaluate_repairs(answers)
+        result = evaluate_repairs(answers)
     elif slug == "deposit":
-        return evaluate_deposit(answers)
+        result = evaluate_deposit(answers)
     elif slug == "eviction":
-        return evaluate_eviction(answers)
+        result = evaluate_eviction(answers)
     else:
-        return {
+        result =  {
             "outcome_summary": "Unknown Scenario",
             "rights_explanation": "No logic defined for this scenario.",
             "template_name": None,
             "context": {}
         }
+    
+    # Ensure advocate_report exists if not set by specific function
+    if "advocate_report" not in result:
+        result["advocate_report"] = report + f"\nOUTCOME: {result.get('outcome_summary')}"
+        
+    return result

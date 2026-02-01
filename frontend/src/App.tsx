@@ -6,6 +6,8 @@ import './index.css';
 
 import Footer from './components/Footer';
 
+import Resources from './pages/Resources';
+
 function App() {
   return (
     <Router>
@@ -14,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/scenario/:id" element={<QuestionFlow />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/resources" element={<Resources />} />
         </Routes>
         <Footer />
       </div>

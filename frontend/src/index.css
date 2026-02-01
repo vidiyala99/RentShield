@@ -176,6 +176,30 @@ input:focus {
 
 /* ... existing styles ... */
 
+
+/* Resources */
+.resource-list {
+  list-style: none;
+  padding: 0;
+}
+
+.resource-list li {
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+}
+
+.resource-list a {
+  color: var(--primary-glow);
+  text-decoration: none;
+}
+
+.resource-list a:hover {
+  text-decoration: underline;
+}
+
 /* Footer */
 .footer-container {
   margin-top: auto;

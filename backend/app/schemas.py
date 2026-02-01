@@ -31,3 +31,4 @@ class EvaluationResponse(BaseModel):
     outcome_summary: str
     rights_explanation: str
     letter_text: str
+    advocate_report: str = None
