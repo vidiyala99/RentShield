@@ -1,0 +1,25 @@
+[Your Name]
+[Your Address]
+[City, State, Zip]
+
+[Date]
+
+[Landlord Name]
+[Landlord Address]
+[City, State, Zip]
+
+RE: TENDER OF RENT for [Rental Property Address]
+
+Dear [Landlord Name],
+
+I am writing regarding the past due rent for my unit.
+
+Under North Carolina law (N.C.G.S. § 42-33), a tenant may "cure" a default for non-payment of rent by tendering the full amount owed, plus any incurred court costs, at any time before a final judgment is entered.
+
+I currently have the full amount of rent owed (${{ rent_amount }}) plus late fees. I am offering this full payment to you immediately to resolve this matter and continue my tenancy.
+
+Please accept this payment. If you proceed with an eviction action despite this tender, I will present this letter to the Magistrate as evidence that I attempted to cure the default as allowed by law.
+
+Sincerely,
+
+[Your Name]

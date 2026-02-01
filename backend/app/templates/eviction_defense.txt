@@ -1,0 +1,27 @@
+[Your Name]
+[Your Address]
+[City, State, Zip]
+
+[Date]
+
+[Landlord Name]
+[Landlord Address]
+[City, State, Zip]
+
+RE: Notice of Defense - Rent Abatement for [Rental Property Address]
+
+Dear [Landlord Name],
+
+I am writing in response to the recent notice/action regarding rent payment.
+
+I acknowledge that rent is claimed to be due. However, I am asserting a defense based on the implied warranty of habitability under N.C.G.S. § 42-42. The following serious defects exist in the property:
+
+{{ issue_details }}
+
+Because the value of the rental unit has been significantly diminished by these issues, I believe I am entitled to a clear "rent abatement" (a reduction in the fair rental value). The amount I legally owe should be offset by the reduced value of the home during this period of disrepair.
+
+I am prepared to discuss a reasonable settlement or payment plan that accounts for these conditions. If necessary, I will raise this counter-claim in Small Claims Court.
+
+Sincerely,
+
+[Your Name]
