@@ -16,10 +16,17 @@ app.add_middleware(
 def health_check():
     return {"status": "ok", "message": "RentShield API is running"}
 
-from app.routers import cases, auth
+from app.routers import cases, auth, photos
+from fastapi.staticfiles import StaticFiles
+import os
 
 app.include_router(auth.router)
 app.include_router(cases.router)
+app.include_router(photos.router)
+
+# Mount uploads directory for serving photos
+os.makedirs("uploads", exist_ok=True)
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 if __name__ == "__main__":
     import uvicorn

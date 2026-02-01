@@ -97,6 +97,7 @@ class Case(Base):
 
     questions = relationship("Question", back_populates="case")
     logs = relationship("UsageLog", back_populates="case")
+    photos = relationship("CasePhoto", back_populates="case")
 
 class Question(Base):
     __tablename__ = "questions"
@@ -133,3 +134,14 @@ class UsageLog(Base):
     scenario_slug = Column(String, nullable=True)
     
     case = relationship("Case", back_populates="logs")
+
+class CasePhoto(Base):
+    __tablename__ = "case_photos"
+
+    id = Column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    case_id = Column(Integer, ForeignKey("cases.id"), nullable=False)
+    file_path = Column(String, nullable=False)
+    analysis_json = Column(JSON, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    case = relationship("Case", back_populates="photos")

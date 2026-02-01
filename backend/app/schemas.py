@@ -27,10 +27,6 @@ class TokenData(BaseModel):
     user_id: Optional[str] = None
 
 # --- CASE/SCENARIO SCHEMAS ---
-# Renaming Scenario schemas to Case schemas conceptually, but keeping names if backend uses them
-# The frontend expects "ScenarioBase" etc.
-# We can alias them or just rename. Let's rename for consistency with Backend v2.
-
 class QuestionBase(BaseModel):
     id: int
     text: str
@@ -41,11 +37,22 @@ class QuestionBase(BaseModel):
     class Config:
         from_attributes = True
 
-class CaseBase(BaseModel): # Was ScenarioBase
+class CasePhotoBase(BaseModel):
+    file_path: str
+    analysis_json: Optional[dict] = None
+
+class CasePhotoResponse(CasePhotoBase):
+    id: uuid.UUID
+    created_at: datetime
+    
+    class Config:
+        from_attributes = True
+
+class CaseBase(BaseModel): 
     slug: str
     title: str
     description: str
-    case_type: Optional[str] = None # Added for V2
+    case_type: Optional[str] = None
 
 class CaseCreate(CaseBase):
     pass
@@ -53,12 +60,13 @@ class CaseCreate(CaseBase):
 class CaseDetail(CaseBase):
     id: int
     questions: List[QuestionBase] = []
+    photos: List[CasePhotoResponse] = [] # Added photos list
     
     class Config:
         from_attributes = True
 
 class Answer(BaseModel):
-    question_id: str # "q_1"
+    question_id: str 
     value: Any
 
 class EvaluationRequest(BaseModel):

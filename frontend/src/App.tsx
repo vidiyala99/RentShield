@@ -25,6 +25,7 @@ function App() {
             {/* Protected Routes */}
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/cases/new" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/cases/:id" element={<ProtectedRoute><CaseDetail /></ProtectedRoute>} />
 
             {/* Legacy/Flow Routes - Protected */}
             <Route path="/scenario/:id" element={<ProtectedRoute><QuestionFlow /></ProtectedRoute>} />
